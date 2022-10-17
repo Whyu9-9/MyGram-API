@@ -12,6 +12,7 @@ type Photo struct {
 	PhotoUrl string `json:"photo_url" gorm:"not null" form:"photo_url" valid:"required~PhotoUrl is required"`
 	UserId   uint   `json:"user_id" form:"user_id"`
 	User     *User
+	Comment  []Comment `json:"comment" gorm:"constraint:OnUpdate:CASCADE,OnDelete:SET NULL;"`
 }
 
 func (p *Photo) BeforeCreate(tx *gorm.DB) (err error) {
