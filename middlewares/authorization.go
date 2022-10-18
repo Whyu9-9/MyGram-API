@@ -16,6 +16,7 @@ func ProfileAuthorization() gin.HandlerFunc {
 		userData := c.MustGet("userData").(jwt.MapClaims)
 		userID := uint(userData["id"].(float64))
 		user := models.User{}
+		check := c.Param("userId")
 
 		if err := db.Debug().Where("id = ?", userID).First(&user).Take(&user).Error; err != nil {
 			c.AbortWithStatusJSON(http.StatusNotFound, gin.H{
@@ -33,6 +34,28 @@ func ProfileAuthorization() gin.HandlerFunc {
 			})
 
 			return
+		}
+
+		if check != "" {
+			param, err := strconv.Atoi(c.Param("userId"))
+
+			if err != nil {
+				c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{
+					"error":   "Bad Request",
+					"message": err.Error(),
+				})
+
+				return
+			}
+
+			if uint(param) != userID {
+				c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{
+					"error":   "Unauthorized",
+					"message": "You are not authorized to access this resource",
+				})
+
+				return
+			}
 		}
 	}
 }
