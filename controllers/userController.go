@@ -206,3 +206,46 @@ func UserDelete(c *gin.Context) {
 	})
 
 }
+
+func UserProfilePictureUpdate(c *gin.Context) {
+	db := database.GetDB()
+	userData := c.MustGet("userData").(jwt.MapClaims)
+	contentType := helpers.GetContentType(c)
+	user := models.User{}
+
+	userID := uint(userData["id"].(float64))
+
+	user.ID = userID
+
+	if contentType == appJSON {
+		if err := c.ShouldBindJSON(&user); err != nil {
+			c.AbortWithError(http.StatusBadRequest, err)
+			return
+		}
+	} else {
+		if err := c.ShouldBind(&user); err != nil {
+			c.AbortWithError(http.StatusBadRequest, err)
+			return
+		}
+	}
+
+	user.ID = userID
+	err := db.Model(&user).Where("id = ?", userID).Updates(models.User{ProfilePicture: user.ProfilePicture}).First(&user).Error
+
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"error":   "Bad Request",
+			"message": err.Error(),
+		})
+
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"id":              user.ID,
+		"email":           user.Email,
+		"username":        user.Username,
+		"profile_picture": user.ProfilePicture,
+		"updated_at":      user.UpdatedAt,
+	})
+}

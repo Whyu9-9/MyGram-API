@@ -20,12 +20,12 @@
 							"formdata": [
 								{
 									"key": "email",
-									"value": "test7@gmail.com",
+									"value": "test1@gmail.com",
 									"type": "text"
 								},
 								{
 									"key": "username",
-									"value": "test7",
+									"value": "test1",
 									"type": "text"
 								},
 								{
@@ -65,7 +65,7 @@
 							"formdata": [
 								{
 									"key": "email",
-									"value": "test2@gmail.com",
+									"value": "test1@gmail.com",
 									"type": "text"
 								},
 								{
@@ -98,7 +98,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3Q5QGdtYWlsLmNvbSIsImlkIjo1fQ.RzoZeHJgw7fI8nrHkQW4bVmM7ABEb1YWW75D7v8ChAY",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxQGdtYWlsLmNvbSIsImlkIjoxfQ._TqFb7ofXF2L7OqCDVVnj3V54QlgS4nSBBA_rnpeni0",
 									"type": "string"
 								}
 							]
@@ -110,12 +110,12 @@
 							"formdata": [
 								{
 									"key": "username",
-									"value": "test9",
+									"value": "test1",
 									"type": "text"
 								},
 								{
 									"key": "email",
-									"value": "test9@gmail.com",
+									"value": "test1@gmail.com",
 									"type": "text"
 								},
 								{
@@ -156,7 +156,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3Q3QGdtYWlsLmNvbSIsImlkIjo2fQ.bb2gWdrd-q4FqtjtPma9eU3nxTvpSJuuPewjQ6rHGug",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxQGdtYWlsLmNvbSIsImlkIjoxfQ._TqFb7ofXF2L7OqCDVVnj3V54QlgS4nSBBA_rnpeni0",
 									"type": "string"
 								}
 							]
@@ -172,6 +172,46 @@
 							"port": "8080",
 							"path": [
 								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User Profile Picture",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxQGdtYWlsLmNvbSIsImlkIjoxfQ._TqFb7ofXF2L7OqCDVVnj3V54QlgS4nSBBA_rnpeni0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "profile_picture",
+									"value": "profilepicture.com",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/users/profile-picture",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"profile-picture"
 							]
 						}
 					},
@@ -203,7 +243,7 @@
 							"formdata": [
 								{
 									"key": "caption",
-									"value": "lit",
+									"value": "wow",
 									"type": "text"
 								},
 								{
@@ -213,7 +253,7 @@
 								},
 								{
 									"key": "photo_url",
-									"value": "www.akowkaw.com",
+									"value": "www.example.com",
 									"type": "text"
 								}
 							]
@@ -281,23 +321,23 @@
 							"formdata": [
 								{
 									"key": "title",
-									"value": "tets",
-									"type": "text"
-								},
-								{
-									"key": "caption",
 									"value": "test",
 									"type": "text"
 								},
 								{
+									"key": "caption",
+									"value": "wow",
+									"type": "text"
+								},
+								{
 									"key": "photo_url",
-									"value": "akwoawko",
+									"value": "www.example2.com",
 									"type": "text"
 								}
 							]
 						},
 						"url": {
-							"raw": "http://localhost:8080/photos/2",
+							"raw": "http://localhost:8080/photos/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -305,7 +345,7 @@
 							"port": "8080",
 							"path": [
 								"photos",
-								"2"
+								"1"
 							]
 						}
 					},
@@ -327,7 +367,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/photos/2",
+							"raw": "http://localhost:8080/photos/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -335,7 +375,7 @@
 							"port": "8080",
 							"path": [
 								"photos",
-								"2"
+								"1"
 							]
 						}
 					},
@@ -355,7 +395,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QyQGdtYWlsLmNvbSIsImlkIjo1fQ.8vQwTiuqm_rIRhWFCUhfrnIiIpp7X1Md9I9Doib56a4",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxQGdtYWlsLmNvbSIsImlkIjoxfQ._TqFb7ofXF2L7OqCDVVnj3V54QlgS4nSBBA_rnpeni0",
 									"type": "string"
 								}
 							]
@@ -364,7 +404,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"message\":\"tests\",\n    \"photo_id\": 3\n}",
+							"raw": "{\n    \"message\":\"this is good\",\n    \"photo_id\": 1\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -393,7 +433,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QyQGdtYWlsLmNvbSIsImlkIjo1fQ.8vQwTiuqm_rIRhWFCUhfrnIiIpp7X1Md9I9Doib56a4",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxQGdtYWlsLmNvbSIsImlkIjoxfQ._TqFb7ofXF2L7OqCDVVnj3V54QlgS4nSBBA_rnpeni0",
 									"type": "string"
 								}
 							]
@@ -422,7 +462,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QyQGdtYWlsLmNvbSIsImlkIjo1fQ.8vQwTiuqm_rIRhWFCUhfrnIiIpp7X1Md9I9Doib56a4",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxQGdtYWlsLmNvbSIsImlkIjoxfQ._TqFb7ofXF2L7OqCDVVnj3V54QlgS4nSBBA_rnpeni0",
 									"type": "string"
 								}
 							]
@@ -434,13 +474,13 @@
 							"formdata": [
 								{
 									"key": "message",
-									"value": "tests1",
+									"value": "this is very good",
 									"type": "text"
 								}
 							]
 						},
 						"url": {
-							"raw": "http://localhost:8080/comments/7",
+							"raw": "http://localhost:8080/comments/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -448,7 +488,7 @@
 							"port": "8080",
 							"path": [
 								"comments",
-								"7"
+								"2"
 							]
 						}
 					},
@@ -462,7 +502,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QyQGdtYWlsLmNvbSIsImlkIjo1fQ.8vQwTiuqm_rIRhWFCUhfrnIiIpp7X1Md9I9Doib56a4",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxQGdtYWlsLmNvbSIsImlkIjoxfQ._TqFb7ofXF2L7OqCDVVnj3V54QlgS4nSBBA_rnpeni0",
 									"type": "string"
 								}
 							]
@@ -470,7 +510,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/comments/7",
+							"raw": "http://localhost:8080/comments/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -478,7 +518,7 @@
 							"port": "8080",
 							"path": [
 								"comments",
-								"7"
+								"2"
 							]
 						}
 					},
@@ -498,7 +538,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3Q5QGdtYWlsLmNvbSIsImlkIjo1fQ.RzoZeHJgw7fI8nrHkQW4bVmM7ABEb1YWW75D7v8ChAY",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxQGdtYWlsLmNvbSIsImlkIjoxfQ._TqFb7ofXF2L7OqCDVVnj3V54QlgS4nSBBA_rnpeni0",
 									"type": "string"
 								}
 							]
@@ -510,12 +550,12 @@
 							"formdata": [
 								{
 									"key": "name",
-									"value": "test2",
+									"value": "facebook",
 									"type": "text"
 								},
 								{
 									"key": "social_media_url",
-									"value": "test2.com",
+									"value": "facebook.com",
 									"type": "text"
 								}
 							]
@@ -542,7 +582,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QyQGdtYWlsLmNvbSIsImlkIjo1fQ.8vQwTiuqm_rIRhWFCUhfrnIiIpp7X1Md9I9Doib56a4",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxQGdtYWlsLmNvbSIsImlkIjoxfQ._TqFb7ofXF2L7OqCDVVnj3V54QlgS4nSBBA_rnpeni0",
 									"type": "string"
 								}
 							]
@@ -583,12 +623,12 @@
 							"formdata": [
 								{
 									"key": "name",
-									"value": "test",
+									"value": "instagram",
 									"type": "text"
 								},
 								{
 									"key": "social_media_url",
-									"value": "test",
+									"value": "www.instagram.com",
 									"type": "text"
 								}
 							]
@@ -616,7 +656,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3Q5QGdtYWlsLmNvbSIsImlkIjo1fQ.RzoZeHJgw7fI8nrHkQW4bVmM7ABEb1YWW75D7v8ChAY",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxQGdtYWlsLmNvbSIsImlkIjoxfQ._TqFb7ofXF2L7OqCDVVnj3V54QlgS4nSBBA_rnpeni0",
 									"type": "string"
 								}
 							]

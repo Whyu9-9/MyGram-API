@@ -68,6 +68,7 @@ func SocialMediaList(c *gin.Context) {
 
 		user["id"] = Socmed[i].User.ID
 		user["username"] = Socmed[i].User.Username
+		user["profile_picture_url"] = Socmed[i].User.ProfilePicture
 
 		sosmed["id"] = Socmed[i].ID
 		sosmed["name"] = Socmed[i].Name
