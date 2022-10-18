@@ -32,11 +32,11 @@ func PhotoCreate(c *gin.Context) {
 
 	Photo.UserId = userID
 
-	err := db.Debug().Create(&Photo).Error
+	err := db.Create(&Photo).Error
 
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
-			"err":     "Bad Request",
+			"error":   "Bad Request",
 			"message": err.Error(),
 		})
 		return
@@ -58,7 +58,7 @@ func PhotoGetAll(c *gin.Context) {
 
 	var data []interface{}
 
-	err := db.Debug().Preload("User").Find(&Photos).Error
+	err := db.Preload("User").Find(&Photos).Error
 
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
@@ -113,7 +113,7 @@ func PhotoUpdate(c *gin.Context) {
 
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
-			"err":     "Bad Request",
+			"error":   "Bad Request",
 			"message": err.Error(),
 		})
 		return
@@ -140,11 +140,11 @@ func PhotoDelete(c *gin.Context) {
 	Photo.UserId = userId
 	Photo.ID = uint(photoId)
 
-	err := db.Debug().Delete(&Photo).Error
+	err := db.Delete(&Photo).Error
 
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
-			"err":     "Bad Request",
+			"error":   "Bad Request",
 			"message": err.Error(),
 		})
 		return

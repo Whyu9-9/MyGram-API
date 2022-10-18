@@ -31,7 +31,7 @@ func UserRegister(c *gin.Context) {
 		}
 	}
 
-	if err := db.Debug().Create(&user).Error; err != nil {
+	if err := db.Create(&user).Error; err != nil {
 		if strings.Contains(err.Error(), "duplicate key value violates unique constraint \"users_email_key\"") {
 			c.JSON(http.StatusConflict, gin.H{
 				"error":   "Conflict",
@@ -85,7 +85,7 @@ func UserLogin(c *gin.Context) {
 	}
 
 	originalPassword := user.Password
-	if err := db.Debug().Where("email = ?", user.Email).First(&user).Take(&user).Error; err != nil {
+	if err := db.Where("email = ?", user.Email).First(&user).Take(&user).Error; err != nil {
 		c.JSON(http.StatusNotFound, gin.H{
 			"error":   "Not Found",
 			"message": "User not found",
@@ -142,7 +142,7 @@ func UserUpdate(c *gin.Context) {
 
 	user.ID = userID
 
-	err = db.Debug().Model(&user).Where("id = ?", userid).Updates(&user).First(&user).Error
+	err = db.Model(&user).Where("id = ?", userid).Updates(&user).First(&user).Error
 
 	if err != nil {
 		if strings.Contains(err.Error(), "duplicate key value violates unique constraint \"users_email_key\"") {
@@ -194,7 +194,7 @@ func UserDelete(c *gin.Context) {
 
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
-			"err":     "Bad Request",
+			"error":   "Bad Request",
 			"message": err.Error(),
 		})
 
