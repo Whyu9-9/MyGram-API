@@ -116,7 +116,7 @@ func UserUpdate(c *gin.Context) {
 	contentType := helpers.GetContentType(c)
 	user := models.User{}
 
-	userid, err := strconv.Atoi(c.Param("id"))
+	userid, err := strconv.Atoi(c.Param("userId"))
 	if err != nil {
 		c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{
 			"error":   "Bad Request",
