@@ -1,6 +1,7 @@
 package models
 
 import (
+	"errors"
 	"mygram-api/helpers"
 
 	"github.com/asaskevich/govalidator"
@@ -25,6 +26,22 @@ func (u *User) BeforeCreate(tx *gorm.DB) (err error) {
 	}
 
 	u.Password = helpers.HashPassword(u.Password)
+
+	err = nil
+	return
+}
+
+func (u *User) BeforeUpdate(tx *gorm.DB) (err error) {
+	if u.Email == "" && u.Username == "" {
+		err = errors.New("Email and Username is required")
+		return
+	} else if u.Username == "" {
+		err = errors.New("Username is required")
+		return
+	} else if u.Email == "" {
+		err = errors.New("Email is required")
+		return
+	}
 
 	err = nil
 	return

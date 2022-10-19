@@ -1,6 +1,8 @@
 package models
 
 import (
+	"errors"
+
 	"github.com/asaskevich/govalidator"
 	"gorm.io/gorm"
 )
@@ -19,6 +21,16 @@ func (c *Comment) BeforeCreate(tx *gorm.DB) (err error) {
 
 	if errCreate != nil {
 		err = errCreate
+		return
+	}
+
+	err = nil
+	return
+}
+
+func (c *Comment) BeforeUpdate(tx *gorm.DB) (err error) {
+	if c.Message == "" {
+		err = errors.New("Message is required")
 		return
 	}
 

@@ -1,6 +1,8 @@
 package models
 
 import (
+	"errors"
+
 	"github.com/asaskevich/govalidator"
 	"gorm.io/gorm"
 )
@@ -26,10 +28,14 @@ func (s *SocialMedia) BeforeCreate(tx *gorm.DB) (err error) {
 }
 
 func (s *SocialMedia) BeforeUpdate(tx *gorm.DB) (err error) {
-	_, errUpdate := govalidator.ValidateStruct(s)
-
-	if errUpdate != nil {
-		err = errUpdate
+	if s.Name == "" && s.SocialMediaUrl == "" {
+		err = errors.New("Name and Social Media Url is required")
+		return
+	} else if s.Name == "" {
+		err = errors.New("Name is required")
+		return
+	} else if s.SocialMediaUrl == "" {
+		err = errors.New("Social Media Url is required")
 		return
 	}
 
