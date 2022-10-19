@@ -94,6 +94,8 @@ func CommentUpdate(c *gin.Context) {
 	userData := c.MustGet("userData").(jwt.MapClaims)
 	contentType := helpers.GetContentType(c)
 	Comment := models.Comment{}
+	photo := []models.Comment{}
+	var data []interface{}
 
 	commentId, _ := strconv.Atoi(c.Param("commentId"))
 	userId := uint(userData["id"].(float64))
@@ -108,6 +110,15 @@ func CommentUpdate(c *gin.Context) {
 	Comment.UserId = uint(userId)
 
 	err := db.Model(&Comment).Where("id = ?", commentId).Updates(models.Comment{Message: Comment.Message}).First(&Comment).Error
+	res := db.Model(&Comment).Preload("Photo").Where("id = ?", commentId).First(&photo).Error
+
+	if res != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"error":   "Bad Request",
+			"message": res.Error(),
+		})
+		return
+	}
 
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
@@ -117,13 +128,28 @@ func CommentUpdate(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusOK, gin.H{
-		"id":         Comment.ID,
-		"message":    Comment.Message,
-		"photo_id":   Comment.PhotoId,
-		"user_id":    Comment.UserId,
-		"updated_at": Comment.UpdatedAt,
-	})
+	for i := range photo {
+		photos := make(map[string]interface{})
+
+		photos["id"] = photo[i].Photo.ID
+		photos["title"] = photo[i].Photo.Title
+		photos["caption"] = photo[i].Photo.Caption
+		photos["photo_url"] = photo[i].Photo.PhotoUrl
+		photos["user_id"] = photo[i].Photo.UserId
+		photos["updated_at"] = photo[i].Photo.UpdatedAt
+
+		data = append(data, photos)
+
+	}
+
+	// c.JSON(http.StatusOK, gin.H{
+	// 	"id":         Comment.ID,
+	// 	"message":    Comment.Message,
+	// 	"photo_id":   Comment.PhotoId,
+	// 	"user_id":    Comment.UserId,
+	// 	"updated_at": Comment.UpdatedAt,
+	// })
+	c.JSON(http.StatusOK, data)
 }
 
 func CommentDelete(c *gin.Context) {
