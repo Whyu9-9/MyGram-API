@@ -4,17 +4,11 @@ import (
 	"fmt"
 	"log"
 	"mygram-api/models"
+	"os"
 
+	"github.com/joho/godotenv"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
-)
-
-const (
-	host     = "localhost"
-	dbPort   = "5432"
-	user     = "postgres"
-	password = "postgres"
-	dbname   = "mygram_api"
 )
 
 var (
@@ -23,7 +17,12 @@ var (
 )
 
 func StartDB() {
-	config := fmt.Sprintf("host=%s port=%s user=%s dbname=%s password=%s sslmode=disable", host, dbPort, user, dbname, password)
+	errs := godotenv.Load(".env")
+	if errs != nil {
+		log.Fatalf("Some error occured. Err: %s", errs)
+	}
+
+	config := fmt.Sprintf("host=%s port=%s user=%s dbname=%s password=%s sslmode=disable", os.Getenv("HOST"), os.Getenv("DBPORT"), os.Getenv("USERNAME"), os.Getenv("DBNAME"), os.Getenv("PASSWORD"))
 	con := config
 
 	db, err = gorm.Open(postgres.Open(con), &gorm.Config{})

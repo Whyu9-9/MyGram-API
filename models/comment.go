@@ -10,7 +10,7 @@ type Comment struct {
 	Message string `json:"message" gorm:"not null" form:"message" valid:"required~Message is required"`
 	UserId  uint   `json:"user_id" form:"user_id"`
 	User    *User  `json:"user"`
-	PhotoId uint   `json:"photo_id" form:"photo_id" valid:"required~Photo ID is required"`
+	PhotoId uint   `json:"photo_id" form:"photo_id"`
 	Photo   *Photo `json:"photo"`
 }
 

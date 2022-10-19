@@ -2,24 +2,28 @@ package helpers
 
 import (
 	"errors"
+	"log"
+	"os"
 	"strings"
 
 	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
-)
-
-var (
-	secret = "mYgr4mAp1"
+	"github.com/joho/godotenv"
 )
 
 func GenerateToken(id uint, email string) string {
+	errs := godotenv.Load(".env")
+	if errs != nil {
+		log.Fatalf("Some error occured. Err: %s", errs)
+	}
+
 	claims := jwt.MapClaims{
 		"id":    id,
 		"email": email,
 	}
 
 	parseToken := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
-	signedToken, err := parseToken.SignedString([]byte(secret))
+	signedToken, err := parseToken.SignedString([]byte(os.Getenv("JWT_SECRET")))
 
 	if err != nil {
 		panic("Error while signing token")
@@ -44,7 +48,7 @@ func VerifyToken(c *gin.Context) (interface{}, error) {
 			return nil, errResponse
 		}
 
-		return []byte(secret), nil
+		return []byte(os.Getenv("JWT_SECRET")), nil
 	})
 
 	if err != nil {
