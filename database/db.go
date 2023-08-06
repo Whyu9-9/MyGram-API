@@ -22,7 +22,7 @@ func StartDB() {
 		log.Fatalf("Some error occured. Err: %s", errs)
 	}
 
-	config := fmt.Sprintf("host=%s port=%s user=%s dbname=%s password=%s sslmode=disable", os.Getenv("HOST"), os.Getenv("DBPORT"), os.Getenv("USERNAME"), os.Getenv("DBNAME"), os.Getenv("PASSWORD"))
+	config := fmt.Sprintf("host=%s port=%s user=%s dbname=%s password=%s sslmode=%s", os.Getenv("HOST"), os.Getenv("DBPORT"), os.Getenv("USERNAME"), os.Getenv("DBNAME"), os.Getenv("PASSWORD"), os.Getenv("SSL"))
 	con := config
 
 	db, err = gorm.Open(postgres.Open(con), &gorm.Config{})
