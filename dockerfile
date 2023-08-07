@@ -12,6 +12,7 @@ ADD . /app
 ## any further commands inside our /app
 ## directory
 WORKDIR /app
+COPY .env.example .env
 ## we run go build to compile the binary
 ## executable of our Go program
 RUN go build -o main .
